@@ -101,6 +101,19 @@ func LoadEtcPwd() (pwdList []PwdEntry, err error) {
 	return pwdList, nil
 }
 
+func GetUser(username string, pwdList []PwdEntry) (id int, err error) {
+
+	if pwdList == nil {return -1, fmt.Errorf("no pwdList provided!")}
+
+	for i:=0; i< len(pwdList); i++ {
+		if user == pwdList[i].Username {
+			return i, nil
+		}
+	}
+	return -1, nil
+}
+
+
 func Sync(pwdList []PwdEntry) (npwdList []PwdEntry, err error) {
 
 	// no changes
